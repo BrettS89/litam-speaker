@@ -3,13 +3,16 @@ const { getIsoDate } = require('./date');
 const { getAlarmMessage } = require('../lib/api');
 const state = require('../state');
 const setAlarmInEmitter = require('./setAlarmInEmitter');
+const audio = require('./audio');
 
 module.exports = async (alarm) => {
   const date = getIsoDate();
   if (alarm.rang.includes(date)) return null;
   console.log('RING RING RING');
   // try {
-  //   const { alarmMessage, removeAlarm, alarmId } = await getAlarmMessage(alarm._id);
+  const { data: { alarmMessage, alarmId, removeAlarm } } = await getAlarmMessage(alarm._id);
+  console.log(alarmMessage, alarmId, removeAlarm);
+  audio.downloadAndPlay(alarmMessage.song.audio);
   //   console.log('success!');
 
   //   if (removeAlarm) {

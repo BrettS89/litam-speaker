@@ -28,15 +28,15 @@ exports.getMyAlarms = async () => {
 
 exports.getAlarmMessage = async alarmId => {
   try {
-    const { alarmMessage } = await axios.get(`${URI}/speaker/getalarmmessage/${alarmId}`, {
+    const { data } = await axios.get(`${URI}/speaker/alarmmessage/${alarmId}`, {
       headers: {
         'authorization': getId(),
       },
     });
 
-    return alarmMessage;
+    return data;
 
   } catch(e) {
-    console.log('getAlarmMessage error')
+    console.log('getAlarmMessage error', e);
   }
 }
