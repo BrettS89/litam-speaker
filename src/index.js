@@ -18,15 +18,27 @@ const socket = io(keys.SOCKET_URI, {
 });
 
 socket.on('ALARM_ADDED', (data) => {
-  handlers.addAlarm(data.alarm);
+  try {
+    handlers.addAlarm(data.alarm);
+  } catch(e) {
+    console.log('alarmAddedHandler error', e);
+  }
 });
 
 socket.on('ALARM_DELETED', data => {
-  handlers.deleteAlarm(data._id);
+  try {
+    handlers.deleteAlarm(data._id);
+  } catch(e) {
+    console.log('alarmDeletedHandler error', e);
+  } 
 });
 
 socket.on('ALARM_TOGGLED', data => {
-  handlers.toggleAlarm(data.alarm);
+  try {
+    handlers.toggleAlarm(data.alarm);
+  } catch(e) {
+    console.log('alarmToggledHandler error', e);
+  }
 });
 
 (async () => {
