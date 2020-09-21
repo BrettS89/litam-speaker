@@ -41,10 +41,18 @@ socket.on('ALARM_TOGGLED', data => {
   }
 });
 
-(async () => {
-  const myAlarms = await api.getMyAlarms();
-  state.alarms = myAlarms;
-  state.alarms.forEach(a => setAlarmInEmitter(a, eventEmitter));
-})();
+socket.on('STOP_ALARM', data => {
+  try {
+    handlers.stopAlarm();
+  } catch(e) {
+    console.log('stopAlarmHandler errir', e);
+  }
+});
+
+// (async () => {
+//   const myAlarms = await api.getMyAlarms();
+//   state.alarms = myAlarms;
+//   state.alarms.forEach(a => setAlarmInEmitter(a, eventEmitter));
+// })();
 
 module.exports = app;

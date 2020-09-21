@@ -2,6 +2,7 @@ const _ = require('lodash');
 const state = require('../state');
 const eventEmitter = require('../EventEmitter');
 const setAlarmInEmitter = require('../utils/setAlarmInEmitter');
+const audio = require('../utils/audio');
 
 exports.addAlarm = alarm => {
   const alarms = [alarm, ...state.alarms];
@@ -28,3 +29,5 @@ exports.toggleAlarm = alarm => {
   eventEmitter.clear();
   state.alarms.forEach(a => setAlarmInEmitter(a, eventEmitter));
 };
+
+exports.stopAlarm = () => audio.stop();

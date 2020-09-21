@@ -40,3 +40,16 @@ exports.getAlarmMessage = async alarmId => {
     console.log('getAlarmMessage error', e);
   }
 }
+
+exports.stopAlarm = async () => {
+  try {
+    const { data } = await axios(`${URI}/speaker/stopalarm`, {
+      method: 'PATCH',
+      headers: {
+        'authorization': getUserId(),
+      },
+    });
+  } catch(e) {
+    console.log('stopAlarm error', e);
+  }
+}
