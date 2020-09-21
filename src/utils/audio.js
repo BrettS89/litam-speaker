@@ -12,7 +12,7 @@ const downloadAndPlay = (uri) => {
     setTimeout(() => {
       stop();
       stopAlarm();
-    }, 9000);
+    }, 90000);
   });
 };
 
