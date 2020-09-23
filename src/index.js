@@ -1,20 +1,26 @@
 const fs = require('fs');
 const express = require('express');
 const io = require('socket.io-client')
-const api = require('./lib/api');
 const keys = require('./config');
-const app = express();
-require('./Timer');
-const setAlarmInEmitter = require('./utils/setAlarmInEmitter');
-const state = require('./state');
-const eventEmitter = require('./EventEmitter');
 const handlers = require('./handlers');
+require('./Timer');
+
+const app = express();
 
 const socket = io(keys.SOCKET_URI, {
   query: {
     givenId: fs.readFileSync(__dirname + '/../id.txt', { encoding: 'utf-8' }),
+    userId: fs.readFileSync(__dirname + '/../userId.txt', { encoding: 'utf-8' }),
   },
   transports: ['websocket']
+});
+
+socket.on('SET_ALARMS', data => {
+  try {
+    handlers.setAlarms(data.myAlarms);
+  } catch(e) {
+    console.log('setAlarmsHandler error', e);
+  }
 });
 
 socket.on('ALARM_ADDED', (data) => {
@@ -48,11 +54,5 @@ socket.on('STOP_ALARM', data => {
     console.log('stopAlarmHandler errir', e);
   }
 });
-
-// (async () => {
-//   const myAlarms = await api.getMyAlarms();
-//   state.alarms = myAlarms;
-//   state.alarms.forEach(a => setAlarmInEmitter(a, eventEmitter));
-// })();
 
 module.exports = app;
