@@ -8,6 +8,7 @@ exports.setAlarms = alarms => {
   state.alarms = alarms;
   eventEmitter.clear();
   state.alarms.forEach(a => setAlarmInEmitter(a, eventEmitter));
+  console.log(state.alarms);
 };
 
 exports.addAlarm = alarm => {
