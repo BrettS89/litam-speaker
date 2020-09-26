@@ -14,8 +14,8 @@ exports.setAlarms = alarms => {
 exports.addAlarm = alarm => {
   const alarms = [alarm, ...state.alarms];
   state.alarms = alarms;
-  eventEmitter.clear();
-  state.alarms.forEach(a => setAlarmInEmitter(a, eventEmitter));
+  // eventEmitter.clear();
+  [alarm].forEach(a => setAlarmInEmitter(a, eventEmitter));
 };
 
 exports.deleteAlarm = _id => {

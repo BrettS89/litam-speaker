@@ -95,7 +95,7 @@ class EE {
         }
       }
       return a;
-    })
+    });
     events[time] = updatedAlarms;
     this.events = events;
   }
