@@ -85,7 +85,7 @@ class EE {
         if (didRing) rang.push(a._id);
       }
     };
-    console.log(toDelete);
+
     let updatedAlarms = arr.filter(a => !toDelete[a._id]);
     updatedAlarms = arr.map(a => {
       if (rang.includes(a._id)) {
