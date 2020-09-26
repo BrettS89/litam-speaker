@@ -4,6 +4,7 @@ const { getAlarmMessage } = require('../lib/api');
 const state = require('../state');
 const setAlarmInEmitter = require('./setAlarmInEmitter');
 const audio = require('./audio');
+const eventEmitter = require('../EventEmitter');
 
 module.exports = async (alarm) => {
   const date = getIsoDate();
