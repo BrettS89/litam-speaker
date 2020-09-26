@@ -73,12 +73,10 @@ class EE {
     const rang = [];
     const events = _.cloneDeep(this.events);
     const arr = events[time];
-    console.log(time);
     if (!arr) return;
     const today = new Date().toString().split(' ')[0];
 
     for (let a of arr) {
-      console.log(a);
       if ((a.days.includes(today) || !a.days.length) && a.active) {
         if (!a.days.length) toDelete[a._id] = true;
         // run logic
@@ -87,7 +85,7 @@ class EE {
         if (didRing) rang.push(a._id);
       }
     };
-
+    console.log(toDelete);
     let updatedAlarms = arr.filter(a => !toDelete[a._id]);
     updatedAlarms = arr.map(a => {
       if (rang.includes(a._id)) {
