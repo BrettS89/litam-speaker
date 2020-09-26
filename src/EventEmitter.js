@@ -80,7 +80,7 @@ class EE {
       if ((a.days.includes(today) || !a.days.length) && a.active) {
         if (!a.days.length) toDelete[a._id] = true;
         // run logic
-        const didRing = await triggerAlarm(a);
+        const didRing = await triggerAlarm(this, a);
         console.log(didRing);
         if (didRing) rang.push(a._id);
       }
