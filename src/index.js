@@ -4,6 +4,7 @@ const io = require('socket.io-client')
 const keys = require('./config');
 const handlers = require('./handlers');
 require('./Timer');
+require('./utils/bluetooth');
 
 const app = express();
 
